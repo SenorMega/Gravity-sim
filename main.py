@@ -28,11 +28,11 @@ clock = pygame.time.Clock()
 
 # 2. Simulation & Camera Constants
 G = 2.0          
-TIMESTEP = 0.2   
+TIMESTEP = 0.02   
 SOFTENING = 0.5
 CENTER = np.array([WIDTH // 2, HEIGHT // 2], dtype=np.float32)
 
-ZOOM = 0.45      
+ZOOM = 2.95      
 TILT = 0.35      
 FPS = 30         # 30 FPS for high performance with image textures
 
