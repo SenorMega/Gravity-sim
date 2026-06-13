@@ -16,8 +16,13 @@ START_DAY = 5
 
 # 1. Initialize Graphics
 pygame.init()
-WIDTH, HEIGHT = 1280, 720
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
+
+# Auto-detect your monitor's native resolution
+info = pygame.display.Info()
+WIDTH, HEIGHT = info.current_w, info.current_h
+
+# Set to Fullscreen
+screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.FULLSCREEN)
 pygame.display.set_caption(f"Tilted Textured Solar System: {START_YEAR}-{START_MONTH}-{START_DAY}")
 clock = pygame.time.Clock()
 
@@ -201,7 +206,12 @@ probe_acc = get_sun_only_accel(probe_pos)
 running = True
 while running:
     for event in pygame.event.get():
-        if event.type == pygame.QUIT: running = False
+        if event.type == pygame.QUIT: 
+            running = False
+        # Add this to exit fullscreen when you press ESC
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:
+                running = False
 
     # Physics Integration (Adjusted for 30FPS)
     ADJUSTED_TIMESTEP = TIMESTEP * 2 
